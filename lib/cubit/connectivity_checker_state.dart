@@ -11,7 +11,7 @@ enum NetworkStatus {
 enum InternetConnectivityStatus {
   internetAccessAvailable,
   noInternetAccess,
-  loading,
+  initial,
 }
 
 class ConnectivityCheckerState {
@@ -38,7 +38,6 @@ class ConnectivityCheckerState {
 final class ConnectivityCheckerInitial extends ConnectivityCheckerState {
   ConnectivityCheckerInitial({
     super.networkStatus = NetworkStatus.initial,
-    super.internetConnectivityStatus =
-        InternetConnectivityStatus.noInternetAccess,
+    super.internetConnectivityStatus = InternetConnectivityStatus.initial,
   });
 }

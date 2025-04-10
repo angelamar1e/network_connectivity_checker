@@ -54,7 +54,7 @@ class ConnectivityCheckerCubit extends Cubit<ConnectivityCheckerState> {
       case InternetStatus.disconnected:
         return InternetConnectivityStatus.noInternetAccess;
       default:
-        return InternetConnectivityStatus.loading;
+        return InternetConnectivityStatus.initial;
     }
   }
 
