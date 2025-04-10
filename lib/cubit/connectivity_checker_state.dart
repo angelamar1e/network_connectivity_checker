@@ -18,6 +18,17 @@ class ConnectivityCheckerState {
     required this.networkStatus,
     required this.internetConnectivityStatus,
   });
+
+  ConnectivityCheckerState copyWith({
+    NetworkStatus? networkStatus,
+    InternetConnectivityStatus? internetConnectivityStatus,
+  }) {
+    return ConnectivityCheckerState(
+      networkStatus: networkStatus ?? this.networkStatus,
+      internetConnectivityStatus:
+          internetConnectivityStatus ?? this.internetConnectivityStatus,
+    );
+  }
 }
 
 final class ConnectivityCheckerInitial extends ConnectivityCheckerState {

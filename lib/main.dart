@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:network_connectivity_checker/connectivity_checker_screen.dart';
+import 'package:network_connectivity_checker/cubit/connectivity_checker_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const ConnectivityChecker());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class ConnectivityChecker extends StatelessWidget {
+  const ConnectivityChecker({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: Text('Hello World!'))),
+    return MaterialApp(
+      title: 'Incentives',
+      home: BlocProvider(
+        create: (context) => ConnectivityCheckerCubit(),
+        child: const ConnectivityCheckerScreen(),
+      ),
     );
   }
 }
