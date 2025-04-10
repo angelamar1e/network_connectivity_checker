@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.0
+  internet_connection_checker_plus: ^2.7.1
 
 dev_dependencies:
   flutter_test:
