@@ -1,23 +1,35 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 part 'connectivity_checker_state.dart';
 
 class ConnectivityCheckerCubit extends Cubit<ConnectivityCheckerState> {
-  late final StreamSubscription<List<ConnectivityResult>> subscription;
+  late final StreamSubscription<List<ConnectivityResult>> networkStatusListener;
+  late final StreamSubscription<InternetStatus> internetConnectivityListener;
 
   ConnectivityCheckerCubit() : super(ConnectivityCheckerInitial()) {
-    initialize();
+    checkConnectivity();
   }
 
-  void initialize() async {
+  void checkConnectivity() async {
     await Future.delayed(Duration(seconds: 2)); // simulate loading
 
-    subscription = Connectivity().onConnectivityChanged.listen((
+    networkStatusListener = Connectivity().onConnectivityChanged.listen((
       List<ConnectivityResult> result,
     ) {
       emit(state.copyWith(networkStatus: fetchNetworkStatus(result)));
+    });
+
+    internetConnectivityListener = InternetConnection().onStatusChange.listen((
+      InternetStatus status,
+    ) {
+      emit(
+        state.copyWith(
+          internetConnectivityStatus: fetchInternetConnectivityStatus(status),
+        ),
+      );
     });
   }
 
@@ -35,11 +47,21 @@ class ConnectivityCheckerCubit extends Cubit<ConnectivityCheckerState> {
     }
   }
 
-  void fetchInternetConnectivityStatus() async {}
+  InternetConnectivityStatus fetchInternetConnectivityStatus(status) {
+    switch (status) {
+      case InternetStatus.connected:
+        return InternetConnectivityStatus.internetAccessAvailable;
+      case InternetStatus.disconnected:
+        return InternetConnectivityStatus.noInternetAccess;
+      default:
+        return InternetConnectivityStatus.loading;
+    }
+  }
 
   @override
   Future<void> close() {
-    subscription.cancel();
+    networkStatusListener.cancel();
+    internetConnectivityListener.cancel();
     return super.close();
   }
 }

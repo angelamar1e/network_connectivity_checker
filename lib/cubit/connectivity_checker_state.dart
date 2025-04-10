@@ -8,7 +8,11 @@ enum NetworkStatus {
   noConnection,
 }
 
-enum InternetConnectivityStatus { internetAccessAvailable, noInternetAccess }
+enum InternetConnectivityStatus {
+  internetAccessAvailable,
+  noInternetAccess,
+  loading,
+}
 
 class ConnectivityCheckerState {
   final NetworkStatus networkStatus;
