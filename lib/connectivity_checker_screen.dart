@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:network_connectivity_checker/cubit/connectivity_checker_cubit.dart';
+import 'package:network_connectivity_checker/widgets.dart';
 
 class ConnectivityCheckerScreen extends StatelessWidget {
   const ConnectivityCheckerScreen({super.key});
@@ -8,15 +9,33 @@ class ConnectivityCheckerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Incentives')),
+      appBar: AppBar(
+        title: const Text('Network Connectivity Checker'),
+        backgroundColor: Color.fromARGB(255, 207, 219, 173),
+      ),
       body: Center(
         child: BlocBuilder<ConnectivityCheckerCubit, ConnectivityCheckerState>(
           builder: (context, state) {
             return Column(
               children: [
-                state.networkStatus == NetworkStatus.initial
-                    ? CircularProgressIndicator.adaptive()
-                    : Text('${state.networkStatus}'),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Card(
+                        child:
+                            state.networkStatus == NetworkStatus.initial
+                                ? SizedBox(
+                                  height: 40,
+                                  width: 5,
+                                  child: Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                )
+                                : networkStatusCard(state.networkStatus),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             );
           },
