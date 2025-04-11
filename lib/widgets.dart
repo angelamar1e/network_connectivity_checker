@@ -3,7 +3,7 @@ import 'package:network_connectivity_checker/constants.dart';
 import 'package:network_connectivity_checker/cubit/connectivity_checker_cubit.dart';
 import 'package:network_connectivity_checker/models.dart';
 
-Widget networkStatusCard(
+Widget statusCard(
   NetworkStatus? networkStatus, [
   InternetConnectivityStatus? internetStatus,
 ]) {
