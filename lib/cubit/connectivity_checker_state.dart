@@ -9,9 +9,9 @@ enum NetworkStatus {
 }
 
 enum InternetConnectivityStatus {
+  initial,
   internetAccessAvailable,
   noInternetAccess,
-  initial,
 }
 
 class ConnectivityCheckerState {

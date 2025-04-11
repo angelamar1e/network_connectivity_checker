@@ -14,17 +14,19 @@ class ConnectivityCheckerCubit extends Cubit<ConnectivityCheckerState> {
   }
 
   void checkConnectivity() async {
-    await Future.delayed(Duration(seconds: 2)); // simulate loading
-
     networkStatusListener = Connectivity().onConnectivityChanged.listen((
       List<ConnectivityResult> result,
-    ) {
+    ) async {
+      emit(state.copyWith(networkStatus: NetworkStatus.initial));
+      await Future.delayed(Duration(seconds: 2)); // simulate loading
       emit(state.copyWith(networkStatus: fetchNetworkStatus(result)));
     });
 
     internetConnectivityListener = InternetConnection().onStatusChange.listen((
       InternetStatus status,
-    ) {
+    ) async {
+      emit(state.copyWith(networkStatus: NetworkStatus.initial));
+      await Future.delayed(Duration(seconds: 2)); // simulate loading
       emit(
         state.copyWith(
           internetConnectivityStatus: fetchInternetConnectivityStatus(status),
