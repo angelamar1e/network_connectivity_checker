@@ -2,17 +2,22 @@
 import 'package:flutter/material.dart';
 import 'package:network_connectivity_checker/models.dart';
 
-Map<String, NetworkStatusInfo> networkInfoMap = {
-  'mobile': NetworkStatusInfo(
+Map<String, StatusInfo> InfoMap = {
+  'mobile': StatusInfo(
     icon: (Icons.four_g_mobiledata),
     description: 'Connected via Mobile Data',
   ),
-  'wifi': NetworkStatusInfo(
-    icon: (Icons.wifi),
-    description: 'Connected via Wi-Fi',
-  ),
-  'no connection': NetworkStatusInfo(
+  'wifi': StatusInfo(icon: (Icons.wifi), description: 'Connected via Wi-Fi'),
+  'no connection': StatusInfo(
     icon: (Icons.signal_wifi_connected_no_internet_4),
     description: 'No Connection',
+  ),
+  'has internet': StatusInfo(
+    icon: Icons.check_circle,
+    description: 'Internet access available',
+  ),
+  'no internet': StatusInfo(
+    icon: Icons.cancel,
+    description: 'No internet access available',
   ),
 };
