@@ -25,7 +25,11 @@ class ConnectivityCheckerCubit extends Cubit<ConnectivityCheckerState> {
     internetConnectivityListener = InternetConnection().onStatusChange.listen((
       InternetStatus status,
     ) async {
-      emit(state.copyWith(networkStatus: NetworkStatus.initial));
+      emit(
+        state.copyWith(
+          internetConnectivityStatus: InternetConnectivityStatus.initial,
+        ),
+      );
       await Future.delayed(Duration(seconds: 2)); // simulate loading
       emit(
         state.copyWith(

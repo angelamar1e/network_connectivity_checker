@@ -10,7 +10,7 @@ Map<String, StatusInfo> infoMap = {
   'wifi': StatusInfo(icon: (Icons.wifi), description: 'Connected via Wi-Fi'),
   'no connection': StatusInfo(
     icon: (Icons.signal_wifi_connected_no_internet_4),
-    description: 'No Connection',
+    description: 'No connection',
   ),
   'has internet': StatusInfo(
     icon: Icons.check_circle,
