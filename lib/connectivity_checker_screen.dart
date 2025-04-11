@@ -18,34 +18,15 @@ class ConnectivityCheckerScreen extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Card(
-                        child:
-                            state.networkStatus == NetworkStatus.initial
-                                ? loadingIndicator()
-                                : statusCard(state.networkStatus),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Card(
-                        child:
-                            state.internetConnectivityStatus ==
-                                    InternetConnectivityStatus.initial
-                                ? loadingIndicator()
-                                : statusCard(
-                                  null,
-                                  state.internetConnectivityStatus,
-                                ),
-                      ),
-                    ),
-                  ],
-                ),
+                // network status card
+                state.networkStatus == NetworkStatus.initial
+                    ? loadingIndicator()
+                    : statusCard(state.networkStatus),
+                // internet status card
+                state.internetConnectivityStatus ==
+                        InternetConnectivityStatus.initial
+                    ? loadingIndicator()
+                    : statusCard(null, state.internetConnectivityStatus),
               ],
             );
           },

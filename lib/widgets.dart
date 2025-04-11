@@ -33,30 +33,48 @@ Widget statusCard(
     }
   }
 
-  return Padding(
-    padding: EdgeInsets.all(10),
-    child: Column(
-      children: [
-        SizedBox(
-          width: 80,
-          height: 80,
-          child: Icon(statusInfo.icon, color: statusColor, size: 70),
+  return Row(
+    children: [
+      Expanded(
+        child: Card(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 80,
+                  height: 80,
+                  child: Icon(statusInfo.icon, color: statusColor, size: 70),
+                ),
+                Text(
+                  statusInfo.description,
+                  style: TextStyle(color: statusColor, fontSize: 20),
+                ),
+              ],
+            ),
+          ),
         ),
-        Text(
-          statusInfo.description,
-          style: TextStyle(color: statusColor, fontSize: 20),
-        ),
-      ],
-    ),
+      ),
+    ],
   );
 }
 
 Widget loadingIndicator() {
-  return SizedBox(
-    height: 150,
-    width: 5,
-    child: Center(
-      child: CircularProgressIndicator(color: Color.fromARGB(255, 61, 116, 69)),
-    ),
+  return Row(
+    children: [
+      Expanded(
+        child: Card(
+          child: SizedBox(
+            height: 150,
+            width: 5,
+            child: Center(
+              child: CircularProgressIndicator(
+                color: Color.fromARGB(255, 61, 116, 69),
+              ),
+            ),
+          ),
+        ),
+      ),
+    ],
   );
 }
