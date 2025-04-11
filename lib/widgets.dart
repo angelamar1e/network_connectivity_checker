@@ -13,22 +13,22 @@ Widget statusCard(
   if (networkStatus != null) {
     switch (networkStatus) {
       case NetworkStatus.connectedToMobileData:
-        statusInfo = InfoMap['mobile']!;
+        statusInfo = infoMap['mobile']!;
       case NetworkStatus.connectedToWifi:
-        statusInfo = InfoMap['wifi']!;
+        statusInfo = infoMap['wifi']!;
       default:
-        statusInfo = InfoMap['no connection']!;
+        statusInfo = infoMap['no connection']!;
         statusColor = Color.fromARGB(255, 102, 54, 60);
     }
   } else if (internetStatus != null) {
     switch (internetStatus) {
       case InternetConnectivityStatus.internetAccessAvailable:
-        statusInfo = InfoMap['has internet']!;
+        statusInfo = infoMap['has internet']!;
       case InternetConnectivityStatus.noInternetAccess:
-        statusInfo = InfoMap['no internet']!;
+        statusInfo = infoMap['no internet']!;
         statusColor = Color.fromARGB(255, 102, 54, 60);
       default:
-        statusInfo = InfoMap['no internet']!;
+        statusInfo = infoMap['no internet']!;
         statusColor = Color.fromARGB(255, 102, 54, 60);
     }
   }
@@ -47,6 +47,16 @@ Widget statusCard(
           style: TextStyle(color: statusColor, fontSize: 20),
         ),
       ],
+    ),
+  );
+}
+
+Widget loadingIndicator() {
+  return SizedBox(
+    height: 150,
+    width: 5,
+    child: Center(
+      child: CircularProgressIndicator(color: Color.fromARGB(255, 61, 116, 69)),
     ),
   );
 }

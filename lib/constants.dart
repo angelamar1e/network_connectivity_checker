@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:network_connectivity_checker/models.dart';
 
-Map<String, StatusInfo> InfoMap = {
+Map<String, StatusInfo> infoMap = {
   'mobile': StatusInfo(
     icon: (Icons.four_g_mobiledata),
     description: 'Connected via Mobile Data',

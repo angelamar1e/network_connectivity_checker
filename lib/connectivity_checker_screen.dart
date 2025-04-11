@@ -24,15 +24,7 @@ class ConnectivityCheckerScreen extends StatelessWidget {
                       child: Card(
                         child:
                             state.networkStatus == NetworkStatus.initial
-                                ? SizedBox(
-                                  height: 150,
-                                  width: 5,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color: Color.fromARGB(255, 61, 116, 69),
-                                    ),
-                                  ),
-                                )
+                                ? loadingIndicator()
                                 : statusCard(state.networkStatus),
                       ),
                     ),
@@ -45,15 +37,7 @@ class ConnectivityCheckerScreen extends StatelessWidget {
                         child:
                             state.internetConnectivityStatus ==
                                     InternetConnectivityStatus.initial
-                                ? SizedBox(
-                                  height: 150,
-                                  width: 5,
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color: Color.fromARGB(255, 61, 116, 69),
-                                    ),
-                                  ),
-                                )
+                                ? loadingIndicator()
                                 : statusCard(
                                   null,
                                   state.internetConnectivityStatus,
