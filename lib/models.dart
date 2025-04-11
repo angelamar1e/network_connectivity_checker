@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class NetworkStatusInfo {
+class StatusInfo {
   final IconData icon;
   final String description;
 
-  NetworkStatusInfo({required this.icon, required this.description});
+  StatusInfo({required this.icon, required this.description});
 }
